@@ -16,6 +16,7 @@ services:
 branches:
   only:
     - master
+    - configurable-meta-bucket
 
 matrix:
   include:
