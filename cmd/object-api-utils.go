@@ -47,7 +47,7 @@ import (
 
 const (
 	// MinIO meta bucket.
-	minioMetaBucket = ".minio.sys"
+	minioMetaBucket = "/opt/.minio.sys"
 	// Multipart meta prefix.
 	mpartMetaPrefix = "multipart"
 	// MinIO Multipart meta prefix.
