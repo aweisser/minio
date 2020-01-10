@@ -47,7 +47,7 @@ import (
 
 const (
 	// MinIO meta bucket.
-	minioMetaBucket = ".minio2.sys"
+	minioMetaBucket = ".minio.sys"
 	// Multipart meta prefix.
 	mpartMetaPrefix = "multipart"
 	// MinIO Multipart meta prefix.
@@ -192,6 +192,10 @@ func pathJoin(elem ...string) string {
 		if hasSuffix(elem[len(elem)-1], SlashSeparator) {
 			trailingSlash = SlashSeparator
 		}
+	}
+	// Move the metaBucket one folder up
+	if len(elem) > 1 && strings.HasPrefix(elem[1], minioMetaBucket) {
+		elem[1] = pathJoin(".." , elem[1])
 	}
 	return path.Join(elem...) + trailingSlash
 }
