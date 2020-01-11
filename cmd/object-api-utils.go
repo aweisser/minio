@@ -25,7 +25,9 @@ import (
 	"math/rand"
 	"net"
 	"net/http"
+	"os"
 	"path"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -193,9 +195,10 @@ func pathJoin(elem ...string) string {
 			trailingSlash = SlashSeparator
 		}
 	}
-	// Move the metaBucket one folder up
+	// Move the metaBucket to a folder in os.TempDir
 	if len(elem) > 1 && strings.HasPrefix(elem[1], minioMetaBucket) {
-		elem[1] = pathJoin("..", elem[1])
+		bucketBaseName := filepath.Base(elem[0])
+		elem[0] = path.Join(os.TempDir(), bucketBaseName)
 	}
 	return path.Join(elem...) + trailingSlash
 }
