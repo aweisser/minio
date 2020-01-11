@@ -195,7 +195,7 @@ func pathJoin(elem ...string) string {
 	}
 	// Move the metaBucket one folder up
 	if len(elem) > 1 && strings.HasPrefix(elem[1], minioMetaBucket) {
-		elem[1] = pathJoin(".." , elem[1])
+		elem[1] = pathJoin("..", elem[1])
 	}
 	return path.Join(elem...) + trailingSlash
 }
